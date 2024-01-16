@@ -84,7 +84,7 @@ section{
     background: #0173D4;
     padding: 1rem;
     border-radius: 0.4rem;
-    box-shadow: 0px 6px 0px 0px rgba(7,89,133,1);
+    box-shadow: 0px 7px 0px 0px rgba(7,89,133,1);
 }
 
 .game-block{
@@ -94,20 +94,14 @@ section{
 }
 
 .game-piece{
-    box-shadow: 0px -6px 0px 0px rgba(7,89,133,1);
+    box-shadow: 0px -7px 0px 0px rgba(7,89,133,1);
     background: #33383D;
     border-radius: 50%;
     width:5.8rem;
     height:5.8rem;
 }
 
-.game-block:nth-child(1) .game-piece{
-    background: #FF6868;
-}
 
-.game-block:nth-child(2) .game-piece{
-    background: #FFCE69;
-}
 
 
 
