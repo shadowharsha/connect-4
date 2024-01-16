@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemon&family=Roboto:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url(mainstyle.css);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+:root{
+    font-size: 62.5%;
+    --heading-font:"Lemon", serif;
+    --main-font:"Roboto", sans-serif;
+}
+
+body{
+    font-size: 1.6rem;
+    font-family: var(--main-font);
+}
+
+/* menu */
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #33383D;
+}
+
+.menu-container{
+    background: #0173D4;
+    width: 25%;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.menu-container h1{
+    color: #fff;
+    font-family: var(--heading-font);
+    margin-bottom: 4rem;
+}
+
+.menu-container .start{
+    display: inline-block;
+    background: #FF6868;
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    width: 50%;
+    margin: 1.6rem auto;
+    text-transform: uppercase;
+}
+
+.menu-container .rules{
+    display: inline-block;
+    background: #FFCE69;
+    color: #33383D;
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    width: 50%;
+    margin: 1.6rem auto;
+    text-transform: uppercase;
+}
+
+.start:active, .rules:active{
+    scale: 1.05;
+}
