@@ -1,8 +1,10 @@
+"use strict";
+
 // party animation
 function letsCelebrate(color){
     const jsConfetti = new JSConfetti()
     jsConfetti.addConfetti({
-        confettiColors:[color]
+        confettiColors:[color],
     });
 }
 
@@ -42,7 +44,7 @@ function restartGame(){
         pockets.forEach(element => {
             element.style.backgroundColor = "#33383D"; 
 
-            // set player one-true and player two-false on reset
+            // set player one-true and player two-false on restart
             playerOneTurn = true;
             playerTwoTurn = false;
             redFill.style.visibility = "visible";
@@ -52,6 +54,19 @@ function restartGame(){
 }
 
 restartGame();
+
+// reset after win
+function reset(){
+    pockets.forEach(element => {
+        element.style.backgroundColor = "#33383D"; 
+
+        // set player one-true and player two-false on reset
+        playerOneTurn = true;
+        playerTwoTurn = false;
+        redFill.style.visibility = "visible";
+        yelloFill.style.visibility = "hidden";
+    });
+}
 
 // store columns modified
 const grid = [[1 ,2 ,3 ,4 ,5 ,6 ,7],
@@ -65,7 +80,7 @@ const col1 = [], col2 =[], col3 =[], col4 = [], col5 = [], col6 = [], col7 = [];
 const col = [col1, col2, col3, col4, col5, col6, col7];
 
 for(let i = 0; i < 7; i++){
-    for(let j = 0; j < 6; j = j + 1){
+    for(let j = 0; j < 6; j++){
         if(col1.length < 6){
             const pocket = document.querySelector(`.game-block:nth-child(${grid[j][0]}) .game-piece`);
             col1.push(pocket);
@@ -96,7 +111,7 @@ const row1 = [], row2 =[], row3 =[], row4 = [], row5 = [], row6 = [];
 const row = [row1, row2, row3, row4, row5, row6];
 
 for(let i = 0; i < 6; i++){
-    for(let j = 0; j < 7; j = j + 1){
+    for(let j = 0; j < 7; j++){
         if(row1.length < 7){
             const pocket = document.querySelector(`.game-block:nth-child(${grid[0][j]}) .game-piece`);
             row1.push(pocket);
@@ -139,20 +154,24 @@ col.forEach(column => {
 function checkWin() {
     // check win for all columns
     col.forEach(column => {
-        for (let i = column.length-1; i >= 0; i--) {
+        for (let i = column.length-1; i-3 >= 0; i--) {
+            console.log(column[i-1]);
             if(window.getComputedStyle(column[i]).backgroundColor === "rgb(255, 104, 104)"&&
                 window.getComputedStyle(column[i-1]).backgroundColor === "rgb(255, 104, 104)" &&
                 window.getComputedStyle(column[i-2]).backgroundColor === "rgb(255, 104, 104)" &&
-                window.getComputedStyle(column[i-3]).backgroundColor === "rgb(255, 104, 104)" && (i-1 < col1.length)){
+                window.getComputedStyle(column[i-3]).backgroundColor === "rgb(255, 104, 104)" ){
 
-                letsCelebrate("rgb(255, 104, 104)");
+                letsCelebrate("rgb(220, 38, 38)");
+                reset();
+
 
             }else if(window.getComputedStyle(column[i]).backgroundColor === "rgb(255, 206, 105)"&&
             window.getComputedStyle(column[i-1]).backgroundColor === "rgb(255, 206, 105)" &&
             window.getComputedStyle(column[i-2]).backgroundColor === "rgb(255, 206, 105)" &&
-            window.getComputedStyle(column[i-3]).backgroundColor === "rgb(255, 206, 105)" && (i-1 < col1.length)){
+            window.getComputedStyle(column[i-3]).backgroundColor === "rgb(255, 206, 105)" ){
                 
-                letsCelebrate("rgb(255, 206, 105)");
+                letsCelebrate("rgb(250, 204, 21)");
+                reset();
 
             }      
         }
@@ -160,28 +179,26 @@ function checkWin() {
 
     // check win for all rows
     row.forEach(horizontal => {
-        for (let i = horizontal.length-1; i >= 0; i--) {
+        for (let i = horizontal.length-1; i-3 >= 0; i--) {
             if(window.getComputedStyle(horizontal[i]).backgroundColor === "rgb(255, 104, 104)" &&
                window.getComputedStyle(horizontal[i-1]).backgroundColor === "rgb(255, 104, 104)" &&
                window.getComputedStyle(horizontal[i-2]).backgroundColor === "rgb(255, 104, 104)" &&
-               window.getComputedStyle(horizontal[i-3]).backgroundColor === "rgb(255, 104, 104)" && ((i-1) < row1.length)
-               ){
+               window.getComputedStyle(horizontal[i-3]).backgroundColor === "rgb(255, 104, 104)" ){
 
-                letsCelebrate("rgb(255, 104, 104)");
+                letsCelebrate("rgb(220, 38, 38)");
 
             }else if(window.getComputedStyle(horizontal[i]).backgroundColor === "rgb(255, 206, 105)" &&
             window.getComputedStyle(horizontal[i-1]).backgroundColor === "rgb(255, 206, 105)" &&
             window.getComputedStyle(horizontal[i-2]).backgroundColor === "rgb(255, 206, 105)" &&
-            window.getComputedStyle(horizontal[i-3]).backgroundColor === "rgb(255, 206, 105)" && ((i-1) < row1.length)){
+            window.getComputedStyle(horizontal[i-3]).backgroundColor === "rgb(255, 206, 105)" ){
 
-                letsCelebrate("rgb(255, 206, 105)");
+                letsCelebrate("rgb(250, 204, 21)");
 
             }
         }
     })
 
     // for diagonals
-    
 }
 
 
