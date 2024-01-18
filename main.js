@@ -151,6 +151,71 @@ col.forEach(column => {
     });
 });
 
+// store diagonals
+const dig1=[], dig2=[], dig3=[], dig4=[], dig5=[], dig6=[], dig7=[], dig8=[],dig9=[],dig10=[],dig11=[],dig12=[];
+const diagonals = [dig1,dig2,dig3,dig4,dig5,dig6,dig7,dig8,dig9,dig10,dig11,dig12];
+
+// diagonals
+for (let i = 0; i < 3; i++) {
+  for (let j = 0; i+j < 6; j++) {
+    if(i === 0){
+        const pocket = document.querySelector(`.game-block:nth-child(${grid[i+j][j]}) .game-piece`);
+        dig1.push(pocket);
+    } else if(i === 1){
+        const pocket = document.querySelector(`.game-block:nth-child(${grid[i+j][j]}) .game-piece`);
+        dig2.push(pocket);
+    } else{
+        const pocket = document.querySelector(`.game-block:nth-child(${grid[i+j][j]}) .game-piece`);
+        dig3.push(pocket);
+    }
+  }
+}
+
+for (let i = 0; i < 3; i++) {
+  for (let j = 0; i+j+1 < 7; j++) {
+    if(i === 0){
+        const pocket = document.querySelector(`.game-block:nth-child(${grid[j][j+i+1]}) .game-piece`);
+        dig4.push(pocket);
+    } else if(i === 1){
+        const pocket = document.querySelector(`.game-block:nth-child(${grid[j][j+i+1]}) .game-piece`);
+        dig5.push(pocket);
+    } else{
+        const pocket = document.querySelector(`.game-block:nth-child(${grid[j][j+i+1]}) .game-piece`);
+        dig6.push(pocket);
+    }
+  }
+}
+
+for(let i = 0; i < 3; i++){
+    for(let j = 0; j+i < 6; j++){
+        if(i === 0){
+            const pocket = document.querySelector(`.game-block:nth-child(${grid[i+j][6-j]}) .game-piece`);
+            dig7.push(pocket);
+        } else if(i === 1){
+            const pocket = document.querySelector(`.game-block:nth-child(${grid[i+j][6-j]}) .game-piece`);
+            dig8.push(pocket);
+        } else{
+            const pocket = document.querySelector(`.game-block:nth-child(${grid[i+j][6-j]}) .game-piece`);
+            dig9.push(pocket);
+        }
+    }
+}
+
+for(let i = 3; i < 6; i++){
+    for(let j = 0; j < i+1; j++){
+        if(i === 3){
+            const pocket = document.querySelector(`.game-block:nth-child(${grid[j][i-j]}) .game-piece`);
+            dig10.push(pocket);
+        } else if(i === 4){
+            const pocket = document.querySelector(`.game-block:nth-child(${grid[j][i-j]}) .game-piece`);
+            dig11.push(pocket);
+        } else{
+            const pocket = document.querySelector(`.game-block:nth-child(${grid[j][i-j]}) .game-piece`);
+            dig12.push(pocket);
+        }
+    }
+}
+
 function checkWin() {
     // check win for all columns
     col.forEach(column => {
@@ -160,9 +225,11 @@ function checkWin() {
                 window.getComputedStyle(column[i-1]).backgroundColor === "rgb(255, 104, 104)" &&
                 window.getComputedStyle(column[i-2]).backgroundColor === "rgb(255, 104, 104)" &&
                 window.getComputedStyle(column[i-3]).backgroundColor === "rgb(255, 104, 104)" ){
-
-                letsCelebrate("rgb(220, 38, 38)");
-                reset();
+                
+                setTimeout(() => {
+                    letsCelebrate("rgb(220, 38, 38)");
+                    reset();
+                }, 1000);
 
 
             }else if(window.getComputedStyle(column[i]).backgroundColor === "rgb(255, 206, 105)"&&
@@ -170,9 +237,10 @@ function checkWin() {
             window.getComputedStyle(column[i-2]).backgroundColor === "rgb(255, 206, 105)" &&
             window.getComputedStyle(column[i-3]).backgroundColor === "rgb(255, 206, 105)" ){
                 
-                letsCelebrate("rgb(250, 204, 21)");
-                reset();
-
+                setTimeout(() => {
+                    letsCelebrate("rgb(250, 204, 21)");
+                    reset();
+                }, 1000);
             }      
         }
     });
@@ -185,20 +253,51 @@ function checkWin() {
                window.getComputedStyle(horizontal[i-2]).backgroundColor === "rgb(255, 104, 104)" &&
                window.getComputedStyle(horizontal[i-3]).backgroundColor === "rgb(255, 104, 104)" ){
 
-                letsCelebrate("rgb(220, 38, 38)");
+                setTimeout(() => {
+                    letsCelebrate("rgb(220, 38, 38)");
+                    reset();
+                }, 1000);
+
 
             }else if(window.getComputedStyle(horizontal[i]).backgroundColor === "rgb(255, 206, 105)" &&
             window.getComputedStyle(horizontal[i-1]).backgroundColor === "rgb(255, 206, 105)" &&
             window.getComputedStyle(horizontal[i-2]).backgroundColor === "rgb(255, 206, 105)" &&
             window.getComputedStyle(horizontal[i-3]).backgroundColor === "rgb(255, 206, 105)" ){
 
-                letsCelebrate("rgb(250, 204, 21)");
-
+                setTimeout(() => {
+                    letsCelebrate("rgb(250, 204, 21)");
+                    reset();
+                }, 1000);
             }
         }
     })
 
-    // for diagonals
+    //check win for for all cross(diagonals)
+    diagonals.forEach(cross => {
+        for(let i = cross.length-1; i-3 >= 0; i--){
+            if(window.getComputedStyle(cross[i]).backgroundColor === "rgb(255, 104, 104)" &&
+               window.getComputedStyle(cross[i-1]).backgroundColor === "rgb(255, 104, 104)" &&
+               window.getComputedStyle(cross[i-2]).backgroundColor === "rgb(255, 104, 104)" &&
+               window.getComputedStyle(cross[i-3]).backgroundColor === "rgb(255, 104, 104)" ){
+
+                setTimeout(() => {
+                    letsCelebrate("rgb(220, 38, 38)");
+                    reset();
+                }, 1000);
+                
+
+            }else if(window.getComputedStyle(cross[i]).backgroundColor === "rgb(255, 206, 105)" &&
+            window.getComputedStyle(cross[i-1]).backgroundColor === "rgb(255, 206, 105)" &&
+            window.getComputedStyle(cross[i-2]).backgroundColor === "rgb(255, 206, 105)" &&
+            window.getComputedStyle(cross[i-3]).backgroundColor === "rgb(255, 206, 105)" ){
+
+                setTimeout(() => {
+                    letsCelebrate("rgb(250, 204, 21)");
+                    reset();
+                }, 1000);
+            }
+        }
+    });    
 }
 
 
