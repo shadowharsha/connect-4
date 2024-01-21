@@ -134,6 +134,7 @@ for(let i = 0; i < 6; i++){
     }
 }
 
+console.log(row6);
 
 // click columns modified
 
@@ -220,7 +221,6 @@ function checkWin() {
     // check win for all columns
     col.forEach(column => {
         for (let i = column.length-1; i-3 >= 0; i--) {
-            console.log(column[i-1]);
             if(window.getComputedStyle(column[i]).backgroundColor === "rgb(255, 104, 104)"&&
                 window.getComputedStyle(column[i-1]).backgroundColor === "rgb(255, 104, 104)" &&
                 window.getComputedStyle(column[i-2]).backgroundColor === "rgb(255, 104, 104)" &&
@@ -229,7 +229,7 @@ function checkWin() {
                 setTimeout(() => {
                     letsCelebrate("rgb(220, 38, 38)");
                     reset();
-                }, 1000);
+                }, 600);
 
 
             }else if(window.getComputedStyle(column[i]).backgroundColor === "rgb(255, 206, 105)"&&
@@ -240,7 +240,7 @@ function checkWin() {
                 setTimeout(() => {
                     letsCelebrate("rgb(250, 204, 21)");
                     reset();
-                }, 1000);
+                }, 600);
             }      
         }
     });
@@ -256,7 +256,7 @@ function checkWin() {
                 setTimeout(() => {
                     letsCelebrate("rgb(220, 38, 38)");
                     reset();
-                }, 1000);
+                }, 600);
 
 
             }else if(window.getComputedStyle(horizontal[i]).backgroundColor === "rgb(255, 206, 105)" &&
@@ -267,7 +267,7 @@ function checkWin() {
                 setTimeout(() => {
                     letsCelebrate("rgb(250, 204, 21)");
                     reset();
-                }, 1000);
+                }, 600);
             }
         }
     })
@@ -283,7 +283,7 @@ function checkWin() {
                 setTimeout(() => {
                     letsCelebrate("rgb(220, 38, 38)");
                     reset();
-                }, 1000);
+                }, 600);
                 
 
             }else if(window.getComputedStyle(cross[i]).backgroundColor === "rgb(255, 206, 105)" &&
@@ -294,11 +294,42 @@ function checkWin() {
                 setTimeout(() => {
                     letsCelebrate("rgb(250, 204, 21)");
                     reset();
-                }, 1000);
+                }, 600);
             }
         }
-    });    
+    }); 
+
+    draw();
+    
 }
+
+function draw() {
+    const colrs = ["rgb(255, 104, 104)", "rgb(255, 206, 105)"];
+
+    const bool = row1.every(element => colrs.includes(window.getComputedStyle(element).backgroundColor))
+    if(bool){
+        reset();
+    }
+}
+
+// function draw() {
+// if((window.getComputedStyle(row1[0]).backgroundColor === "rgb(255, 104, 104)" ||
+//     window.getComputedStyle(row1[0]).backgroundColor === "rgb(255, 206, 105)")
+//     && (window.getComputedStyle(row1[1]).backgroundColor === "rgb(255, 104, 104)" ||
+//     window.getComputedStyle(row1[1]).backgroundColor === "rgb(255, 206, 105)")
+//     && (window.getComputedStyle(row1[2]).backgroundColor === "rgb(255, 104, 104)" ||
+//     window.getComputedStyle(row1[2]).backgroundColor === "rgb(255, 206, 105)")
+//     && (window.getComputedStyle(row1[3]).backgroundColor === "rgb(255, 104, 104)" || 
+//     window.getComputedStyle(row1[3]).backgroundColor ==="rgb(255, 206, 105)")
+//     && (window.getComputedStyle(row1[4]).backgroundColor === "rgb(255, 104, 104)" ||
+//     window.getComputedStyle(row1[4]).backgroundColor === "rgb(255, 206, 105)")
+//     && (window.getComputedStyle(row1[5]).backgroundColor === "rgb(255, 104, 104)" ||
+//     window.getComputedStyle(row1[5]).backgroundColor === "rgb(255, 206, 105)")
+//     && (window.getComputedStyle(row1[6]).backgroundColor === "rgb(255, 104, 104)" ||
+//     window.getComputedStyle(row1[6]).backgroundColor === "rgb(255, 206, 105)")){
+//         reset();
+//     }
+// }
 
 
 // check win for first column

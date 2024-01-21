@@ -75,3 +75,9 @@ body{
 .start:active, .rules:active{
     scale: 0.95;
 }
+
+@media  only screen and (max-width:600px){
+    .menu-container{
+        width: 70%;
+    }
+}
